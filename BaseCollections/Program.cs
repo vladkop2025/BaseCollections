@@ -24,8 +24,10 @@ namespace BaseCollections
                     string text = File.ReadAllText(filePath);
                     var noPunctuationText = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
 
-                    List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', ',', '.', '!', '?' },
-                                                 StringSplitOptions.RemoveEmptyEntries));
+                    // Используем LinkedList вместо List
+                    LinkedList<string> words = new LinkedList<string>(
+                        noPunctuationText.Split(new[] { ' ', '\n', '\r', '\t' },
+                                              StringSplitOptions.RemoveEmptyEntries));
 
                     // Останавливаем таймер
                     stopwatch.Stop();
