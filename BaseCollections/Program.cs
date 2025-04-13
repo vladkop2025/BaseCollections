@@ -24,7 +24,7 @@ namespace BaseCollections
                     string text = File.ReadAllText(filePath);
                     var noPunctuationText = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
 
-                    List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', ',', '.', '!', '?', '\n', '\r', '\t' },
+                    List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', '\n', '\r', '\t' },
                                                  StringSplitOptions.RemoveEmptyEntries));
 
                     // Останавливаем таймер
@@ -60,5 +60,5 @@ namespace BaseCollections
 }
 
 //Найдено 147853 слов:
-//Время обработки: 52 мс
+//Время обработки: 63 мс
 //---------------------- -
