@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,4 +112,11 @@ namespace BaseCollections
 
 //Найдено 147853 слов:
 //Время обработки: 78 мс
-//---------------------- -
+//---------------------- 
+
+//Есть несколько рекомендаций, которые помогут сделать вашу работу ещё лучше:
+//1.Используйте Path.Combine для составления путей к файлам. Что позволит создать универсальный путь к файлу в разных ОС (в разных разный слеш),
+//тут более подробно можно прочитать https://learn.microsoft.com/ru-ru/dotnet/api/system.io.path.combine?view=net-7.0. 
+//2.Можно сократить запись получения первых 10 записей из словарика примерно так var newDic = oldDic.OrderBy(g => g.Key).Take(10);.
+//3.Для проверки строки на пустоту и null есть специальное расширение для этого String.IsNullOrEmpty(String) более подробно можно прочитать
+//тут https://learn.microsoft.com/ru-ru/dotnet/api/system.string.isnullorempty?view=net-7.0.
