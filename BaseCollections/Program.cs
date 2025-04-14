@@ -40,7 +40,7 @@ namespace BaseCollections
                     //     .ToList();
                     var words = noPunctuationText
                          .Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                         .Where(word => !string.IsNullOrWhiteSpace(word) && word.Length > 2)
+                         .Where(word => !string.IsNullOrWhiteSpace(word) && word.Length > 2)  // Фильтрация - отсеивает строки, состоящие только из пробелов
                          .ToList();
 
                     //List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', '\n', '\r', '\t' },
@@ -48,6 +48,7 @@ namespace BaseCollections
 
                     // Создаем словарь для подсчета частоты слов
                     var wordFrequency = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase); // Без учета регистра
+                    
                     //Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
                     foreach (var word in words)
                     {
