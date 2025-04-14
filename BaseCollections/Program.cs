@@ -15,7 +15,7 @@ namespace BaseCollections
 
             // Создаем и запускаем таймер
             Stopwatch stopwatch = Stopwatch.StartNew();
-
+           
             //string filePath = "C:\\Users\\vladk\\Desktop\\Text.txt";
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             //string filePath = Path.Combine("C:", "Users", "vladk", "Desktop", "Text.txt");
