@@ -25,17 +25,33 @@ namespace BaseCollections
             {
                 try
                 {
-                    string text = File.ReadAllText(filePath);
-                    var noPunctuationText = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
 
-                    List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', '\n', '\r', '\t' },
-                                                 StringSplitOptions.RemoveEmptyEntries));
+                    string text = File.ReadAllText(filePath);
+                    if (string.IsNullOrEmpty(text))
+                    {
+                        Console.WriteLine("Файл пуст или содержит только пробелы.");
+                        return;
+                    }
+
+                    var noPunctuationText = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
+                    //var words = noPunctuationText
+                    //     .Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                    //     .Where(word => !string.IsNullOrEmpty(word) && word.Length > 2)      // Фильтрация  IsNullOrWhiteSpace - менее строгая проверка
+                    //     .ToList();
+                    var words = noPunctuationText
+                         .Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                         .Where(word => !string.IsNullOrWhiteSpace(word) && word.Length > 2)
+                         .ToList();
+
+                    //List<string> words = new List<string>(noPunctuationText.Split(new[] { ' ', '\n', '\r', '\t' },
+                    //                             StringSplitOptions.RemoveEmptyEntries));
 
                     // Создаем словарь для подсчета частоты слов
-                    Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
+                    var wordFrequency = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase); // Без учета регистра
+                    //Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
                     foreach (var word in words)
                     {
-                        if (word.Length <= 2) continue; // Пропускаем короткие слова
+                        //if (word.Length <= 2) continue; // Пропускаем короткие слова
 
                         if (wordFrequency.ContainsKey(word))
                         {
@@ -97,6 +113,26 @@ namespace BaseCollections
 
     }
 }
+
+
+//Топ - 10 самых частых слов:
+//--------------------------
+//Слово           Количество
+//--------------------------
+//что             2412
+//она             1634
+//Как             1536
+//все             965
+//Обломов         911
+//его             906
+//Это             899
+//так             813
+//только          585
+//сказал          552
+//Найдено 111244 слов:
+//Время обработки: 162 мс
+//---------------------- 
+
 
 //Топ - 10 самых частых слов:
 //--------------------------
